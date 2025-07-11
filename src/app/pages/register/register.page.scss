@@ -1,0 +1,31 @@
+ion-item.invalid ion-label,
+ion-item.invalid ion-input,
+ion-radio-group.invalid {
+  color: #ff0000 !important;
+
+}
+
+.errormsg {
+  color:red; 
+  font-size:13px; 
+  margin:4px 16px; 
+  text-align:start
+}
+
+.radio-group-inline {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 5px; 
+}
+
+.orange-button {
+  --background: #FF8501;
+  margin: 20px auto 0 auto;
+  width: 80%;
+}

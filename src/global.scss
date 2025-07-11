@@ -34,4 +34,19 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+
+html, body {
+  color-scheme: light !important;
+}
+
+body.dark {
+  --ion-background-color: #ffffff;
+  --ion-text-color: #000000;
+  // Optional: override other dark-mode variables
+}
+
+body {
+  background: #fff !important;
+  color: #000 !important;
+}
+

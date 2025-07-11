@@ -1,0 +1,133 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Registration form
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <!-- First Name -->
+    <ion-item [class.invalid]="f['firstName']?.invalid && f['firstName']?.touched">
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input type="text" formControlName="firstName"></ion-input>
+    </ion-item>
+      <div class="errormsg" *ngIf="f['firstName'].touched && f['firstName'].errors?.['required']">
+        First Name is required
+      </div>
+
+      <!-- Last Name -->
+       <ion-item>
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input type="text" formControlName="lastName"></ion-input>
+       </ion-item>
+
+       <!-- Email Address-->
+        <ion-item [class.invalid]="f['email']?.invalid && f['email']?.touched">
+          <ion-label position="floating">Email Address</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <div class="errormsg"  *ngIf="f['email'].touched && f['email'].errors?.['required']">
+          Email is required
+        </div>
+        <div class="errormsg" *ngIf="f['email'].touched && f['email'].errors?.['pattern']">
+          Enter valid Email Address
+        </div>
+
+        <!-- Contact Number -->
+        <ion-item>
+          <ion-label position="floating">Contact Number</ion-label>
+          <ion-input type="number" formControlName="contact"></ion-input>
+       </ion-item>
+       <div class="errormsg" *ngIf="f['contact'].touched && f['contact'].errors?.['pattern']">
+          Enter valid Contact Number
+        </div>
+
+       <!-- Date of Birth -->
+        <ion-item>
+          <ion-label position="stacked"> Date of Birth</ion-label>
+          <ion-input type="date" formControlName="dob"></ion-input>
+        </ion-item>
+        <div class="errormsg" *ngIf="registerForm.get('dob')?.errors?.['underage'] && registerForm.get('dob')?.touched">
+          User must be at least 18 years old.
+        </div>
+
+
+        <!-- Country -->
+         <ion-item>
+          <ion-label position="stacked"></ion-label>
+          <ion-select formControlName="country" placeholder="Select Country">
+            <ion-select-option value="India">India</ion-select-option>
+            <ion-select-option value="USA">USA</ion-select-option>
+            <ion-select-option value="Canada">Canada</ion-select-option>
+            <ion-select-option value="UK">UK</ion-select-option>
+          </ion-select>
+         </ion-item>
+
+         <!-- Gender -->
+          <ion-item lines="none" [class.invalid]="f['gender']?.invalid && f['gender']?.touched">
+            <ion-label position="absolute">Select Gender</ion-label>
+          </ion-item>
+            <ion-radio-group [class.invalid]="f['gender']?.invalid && f['gender']?.touched" [(ngModel)]="selectedGender" formControlName="gender">
+            <div class="radio-group-inline" >
+              <div class="radio-option" >
+               <ion-radio value="Male"></ion-radio>
+               <ion-label>Male</ion-label>
+             </div>
+             <div class="radio-option">
+                <ion-radio value="Female"></ion-radio>
+                <ion-label>Female</ion-label>
+              </div>
+              <div class="radio-option">
+                <ion-radio value="Other"></ion-radio>
+                <ion-label>Other</ion-label>
+              </div>
+            </div>
+            </ion-radio-group>
+    
+          <div class="errormsg" *ngIf="f['gender'].touched && f['gender'].errors?.['required']">
+            Gender is required
+          </div>
+
+          <!-- Password -->
+          <ion-item [class.invalid]="f['password']?.invalid && f['password']?.touched">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <div class="errormsg" *ngIf="f['password'].touched && f['password'].errors?.['required']">
+            Password is required
+          </div>
+          <div class="errormsg" *ngIf="f['password'].touched && f['password'].errors?.['pattern']">
+            Enter a valid Password
+          </div>
+
+          <!-- Confirm Password -->
+          <ion-item [class.invalid]="f['confirmPassword']?.invalid && f['comfirmPassword']?.touched">
+            <ion-label position="floating">Confirm Password</ion-label>
+            <ion-input type="password" formControlName="confirmPassword"></ion-input>
+          </ion-item>
+          <div class="errormsg" *ngIf="f['confirmPassword'].touched && f['confirmPassword'].errors?.['required']">
+            Confirm Password is required
+          </div>
+          <div class="errormsg" *ngIf="registerForm.errors?.['passwordMismatch'] && registerForm.touched">
+            Passwords do not match.
+          </div>
+
+
+          <!-- Terms and Condition -->
+          <ion-item lines="none" [class.invalid]="f['terms']?.invalid && f['terms']?.touched" >
+            <ion-checkbox slot="start" formControlName="terms"></ion-checkbox>
+            <ion-label>I agree to the terms and conditions</ion-label>
+          </ion-item>
+          <div class="errormsg" *ngIf="f['terms'].touched && f['terms'].errors?.['required']">
+            Please agree to the terms and conditions
+          </div>
+
+          <ion-button type="submit" expand="block" fill="solid" class="orange-button">
+            Register
+          </ion-button>
+
+  </form>
+</ion-content>
